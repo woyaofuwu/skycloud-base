@@ -1,15 +1,18 @@
 FROM openjdk:8-alpine
 
-WORKDIR /data/application
-
-ADD skycloud-base-gateway/target/skycloud-base-gateway.jar app.jar
-
-COPY  docs/docker/entrypoint.sh .
-
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
-RUN ["chmod","+x","/data/application/entrypoint.sh"]
+ENV APP_FILE app.jar
+ENV APP_HOME /usr/apps
 
-ENTRYPOINT ["sh","/data/application/entrypoint.sh"]
+COPY skycloud-base-gateway/target/skycloud-base-gateway.jar $APP_HOME/$APP_FILE
+
+WORKDIR $APP_HOME
+
+ENTRYPOINT ["sh", "-c"]
+
+CMD ["exec java -jar $APP_FILE"]
+
+

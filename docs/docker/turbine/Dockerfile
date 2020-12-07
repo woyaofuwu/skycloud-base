@@ -10,6 +10,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
-RUN ["chmod","+x","/data/application/entrypoint.sh"]
+RUN ["chmod","+x","entrypoint.sh"]
 
-ENTRYPOINT ["sh","/data/application/entrypoint.sh"]
+ENTRYPOINT ["sh","entrypoint.sh"]

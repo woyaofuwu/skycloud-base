@@ -18,3 +18,7 @@
 
 #### 在线文档
 ![swagger](../docs/image/swagger.png)
+
+
+docker run --name skycloud-gateway -d -p 8904:8904  -e CONFIG_ENV=dev -e consul.host='192.168.128.2' skycloud-base-gateway:latest
+docker run --name skycloud-base-gateway  -p 8904:8904  -e CONFIG_ENV=dev -e consul.host='192.168.128.2' skycloud-base-gateway:latest
